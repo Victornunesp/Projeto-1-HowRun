@@ -319,10 +319,13 @@ void MainWindow::on_actionAbrir_triggered()
         temp.setMemVideo(dados[4].toDouble());
         temp.setEstiloJg(dados[5]);
 
+
         lista.push_back(temp);
     }
 
     arquivo.close();
+
+    atualizarTabela();
 
 }
 
@@ -341,7 +344,7 @@ void MainWindow::on_actionSalvar_triggered()
                         QString::number(l.getClockProc()) + "," +
                         QString::number(l.getNPlacas()) + "," +
                         QString::number(l.getMemVideo()) + "," +
-                        (l.getEstiloJg()) +
+                        l.getEstiloJg() +
                         "\n";
 
         arquivo.write(linha.toLocal8Bit());
