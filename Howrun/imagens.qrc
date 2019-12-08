@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/imagens"/>
+    <qresource prefix="/">
+        <file>logo.png</file>
+        <file>icons/ca icon.png</file>
+        <file>icons/gta5.png</file>
+        <file>icons/lol icon.png</file>
+        <file>icons/r6 icon.png</file>
+        <file>icons/ow icon.png</file>
+    </qresource>
+</RCC>
