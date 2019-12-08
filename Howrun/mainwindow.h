@@ -6,6 +6,7 @@
 #include <QVector>
 #include <QFileDialog>
 #include <QFile>
+#include <algorithm>
 #include <QStringList>
 
 #include "setup.h"

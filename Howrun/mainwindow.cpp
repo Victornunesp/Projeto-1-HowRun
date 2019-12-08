@@ -5,13 +5,16 @@
 
 #include <QPixmap>
 
+
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->tabela->setColumnWidth(0,600);
-    ui->tabela->setColumnWidth(1,75);
+    ui->tabela->setColumnWidth(0,400);
+    ui->tabela->setColumnWidth(1,200);
+    ui->tabela->setColumnWidth(2,75);
     /////////////////SETUP ICONES/////////////////////
 
     ui->spinBoxNucleos->setMinimum(1);
@@ -74,15 +77,16 @@ void MainWindow::atualizarTabela()
        }
        ui->tabela->setRowHeight(i,65);
 
-       if(comoRoda(i) == "Roda como recomendado ou superior"){
-            ui->tabela->setItem(i, 1, new QTableWidgetItem (comoRoda(i)));
-       }
-       if(comoRoda(i) == "Roda mínimamente"){
-           ui->tabela->setItem(i, 1, new QTableWidgetItem (comoRoda(i)));
-       }
        if(comoRoda(i) == "Não Roda"){
            ui->tabela->setItem(i, 1, new QTableWidgetItem (comoRoda(i)));
        }
+       if(comoRoda(i) == "Roda mal"){
+           ui->tabela->setItem(i, 1, new QTableWidgetItem (comoRoda(i)));
+       }
+       if(comoRoda(i) == "Roda bem"){
+           ui->tabela->setItem(i, 1, new QTableWidgetItem (comoRoda(i)));
+       }
+
 
     }
 }
@@ -164,6 +168,7 @@ void MainWindow::on_tabela_cellDoubleClicked(int row, int column)
     }
 
     ui->labelRun->setText(comoRoda(row));
+    ui->labelRun_2->setText(comoRoda(row));
 
  }
 
@@ -205,7 +210,6 @@ void MainWindow::on_salvarEd_clicked()
         lista[setupAberto].setNPlacas(ui->spinBoxPlacas_2->text().toInt());
         lista[setupAberto].setNNucleos(ui->spinBoxNucleos_2->text().toInt());
         lista[setupAberto].setEstiloJg(ui->comboBoxEstilo_2->currentText());
-        //lista[setupAberto].setApelido(ui->apelidoSetupLine_2->text().toUpper());
 
         QMessageBox::information(this,"OK","Editado com sucesso!");
 
@@ -282,11 +286,11 @@ QString MainWindow::comoRoda(int s)
 
     switch (Score) {
 
-        case(0): return "Não roda";
+        case(0): return "Não Roda";
 
-        case(1): return "Roda mínimamente";
+        case(1): return "Roda Mal";
 
-        case(2): return "Roda como recomendado ou superior";
+        case(2): return "Roda Bem";
 
     }
 }
@@ -323,9 +327,9 @@ void MainWindow::on_actionAbrir_triggered()
         lista.push_back(temp);
     }
 
-    arquivo.close();
-
     atualizarTabela();
+
+    arquivo.close();
 
 }
 
@@ -352,4 +356,6 @@ void MainWindow::on_actionSalvar_triggered()
     }
     arquivo.close();
 }
+
+
 
